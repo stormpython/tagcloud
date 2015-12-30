@@ -1,0 +1,7 @@
+{
+  "name": "word_cloud",
+  "version": "0.1.0",
+  "dependencies": {
+    "d3-cloud": "1.2.1",
+  }
+}
