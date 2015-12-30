@@ -7,7 +7,7 @@ function WordCloudProvider(Private) {
     description: 'word cloud visualization',
     icon: 'fa-cloud',
     template: require('plugins/sp-wordcloud/cloud.html'),
-    schemas: new Schemasa([
+    schemas: new Schemas([
       {
         group: 'metrics',
         name: 'metric',
@@ -24,8 +24,8 @@ function WordCloudProvider(Private) {
         name: 'segment',
         icon: 'fa fa-scissors',
         title: 'Group Tags',
-        min: 0,
-        max: Infinity,
+        min: 1,
+        // max: 1,
         aggFilter: '!geohash_grid'
       },
       {
@@ -41,6 +41,6 @@ function WordCloudProvider(Private) {
   });
 }
 
-require('plugins/sp-wordcloud/controller/cloudController');
-require('plugins/sp-wordcloud/directive/wordCloud');
+require('plugins/sp-wordcloud/lib/controller/cloudController.js');
+require('plugins/sp-wordcloud/lib/directive/wordCloud.js');
 require('ui/registry/vis_types').register(WordCloudProvider);

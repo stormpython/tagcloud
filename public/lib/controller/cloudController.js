@@ -11,7 +11,9 @@ module.controller('cloudController', function ($scope) {
     var buckets = resp.aggregations[wordsAggId].buckets;
     $scope.words = buckets.map(function (bucket) {
       return {
-        label: bucket.key
+        label: bucket.key,
+        text: bucket.key,
+        size: bucket.count
       };
     });
   });

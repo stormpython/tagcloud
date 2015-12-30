@@ -1,6 +1,6 @@
 var d3 = require('d3');
-var baseLayout = require('');
-var attrs = require('');
+var baseLayout = require('plugins/sp-wordcloud/chart/components/layout/layout');
+var attrs = require('plugins/sp-wordcloud/chart/components/utils/attrs');
 
 function layoutGenerator() {
   var layout = baseLayout();

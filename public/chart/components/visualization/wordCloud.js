@@ -1,7 +1,7 @@
 var d3 = require('d3');
-var textElement = require('');
-var layout.cloud = require('');
-var valuator = require('');
+var d3.layout.cloud = require('d3.layout.cloud');
+var textElement = require('plugins/sp-wordcloud/chart/components/elements/text');
+var valuator = require('plugins/sp-wordcloud/chart/components/utils/valuator');
 
 function wordCloud() {
   var accessor = function (d) { return d; };
