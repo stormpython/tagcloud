@@ -1,8 +1,10 @@
 var d3 = require('d3');
 var textElement = require('');
 var layout.cloud = require('');
+var valuator = require('');
 
 function wordCloud() {
+  var accessor = function (d) { return d; };
   var colorScale = d3.scale.category20();
   var fontNormal = d3.functor('normal');
   var width = 250;
@@ -23,6 +25,8 @@ function wordCloud() {
 
   function generator(selection) {
     selection.each(function (data, index) {
+      var words = accessor.call(this, data, index);
+
       var text = textElement()
         .cssClass(textClass)
         .fill(fill)
@@ -38,7 +42,7 @@ function wordCloud() {
 
       d3.layout.cloud()
         .size([width, height])
-        .words(data)
+        .words(words)
         .text(textAccessor)
         .rotate(rotate)
         .font(font)
@@ -54,6 +58,12 @@ function wordCloud() {
   }
 
   // Public API
+  generator.accessor = function (v) {
+    if (!arguments.length) { return accessor; }
+    accessor = valuator(v);
+    return generator;
+  };
+
   generator.width = function (v) {
     if (!arguments.length) { return width; }
     width = v;

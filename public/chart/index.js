@@ -12,7 +12,7 @@ function chartGenerator() {
       var chart = wordCloud()
         .width(data.width)
         .height(data.height)
-        .text(accessor);
+        .accessor(accessor);
 
       _.forEach([opts, dataOpts], function (o) {
         builder(o, chart);
