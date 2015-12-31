@@ -7,7 +7,7 @@ module.directive('wordCloud', function () {
   function link (scope, element, attrs) {
     var layout = baseLayout();
     var chart = chartGenerator();
-    var selection;
+    var svg = d3.select(element[0]);
 
     function onSizeChange() {
       return {
@@ -23,12 +23,6 @@ module.directive('wordCloud', function () {
       return [width, height];
     };
 
-    selection = d3.select(element[0])
-      .append('svg')
-      .attr('class', 'parent')
-      .attr('width', getSize()[0])
-      .attr('height', getSize()[1]);
-
     function render(data, opts) {
       layout.attr({
         type: opts.layout || 'grid',
@@ -38,7 +32,7 @@ module.directive('wordCloud', function () {
       chart.options(opts);
 
       if (data) {
-        selection
+        svg
           .datum(data)
           .call(layout)
           .selectAll('g.chart')
@@ -58,6 +52,10 @@ module.directive('wordCloud', function () {
       render(scope.data, scope.options);
     }, true);
 
+    element.bind('resize', function () {
+      scope.$apply();
+    });
+
     // Initial render call
     render();
   }
@@ -68,7 +66,7 @@ module.directive('wordCloud', function () {
       data: '=',
       options: '='
     },
-    template: '<div style="height:100%;"></div>',
+    template: '<svg class="parent" width="100%" height="100%"></svg>',
     replace: 'true',
     link: link
   };

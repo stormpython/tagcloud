@@ -2,11 +2,11 @@ function WordCloudProvider(Private) {
   var TemplateVisType = Private(require('ui/template_vis_type/TemplateVisType'));
 
   return new TemplateVisType({
-    name: 'spWordcloud',
+    name: 'wordcloud',
     title: 'Word Cloud',
     description: 'word cloud visualization',
     icon: 'fa-cloud',
-    template: require('plugins/sp-wordcloud/cloud.html'),
+    template: require('plugins/wordcloud/cloud.html'),
     schemas: new Schemas([
       {
         group: 'metrics',
@@ -41,6 +41,6 @@ function WordCloudProvider(Private) {
   });
 }
 
-require('plugins/sp-wordcloud/lib/controller/cloudController.js');
-require('plugins/sp-wordcloud/lib/directive/wordCloud.js');
+require('plugins/wordcloud/lib/controller/cloud_controller.js');
+require('plugins/wordcloud/lib/directive/cloud_directive.js');
 require('ui/registry/vis_types').register(WordCloudProvider);
