@@ -1,7 +1,7 @@
 var d3 = require('d3');
-var baseLayout = require('plugins/sp-wordcloud/chart/components/layout/generator');
-var chartGenerator = require('plugins/sp-wordcloud/chart/index');
-var module = require('ui/modules').get('sp-wordcloud');
+var baseLayout = require('plugins/wordcloud/chart/components/layout/generator');
+var chartGenerator = require('plugins/wordcloud/chart/index');
+var module = require('ui/modules').get('wordcloud');
 
 module.directive('wordCloud', function () {
   function link (scope, element, attrs) {
@@ -11,19 +11,21 @@ module.directive('wordCloud', function () {
 
     function onSizeChange() {
       return {
-        width: element.width(),
-        height: element.height()
+        width: element.parent().parent().width(),
+        height: element.parent().parent().height()
       }
     }
 
     function getSize() {
-      var width = scope.width = element.width();
-      var height = scope.height = element.height();
+      var width = element.parent().parent().width();
+      var height = element.parent().parent().height();
 
       return [width, height];
     };
 
     function render(data, opts) {
+      opts = opts || {};
+
       layout.attr({
         type: opts.layout || 'grid',
         columns: opts.numOfColumns || 0,
@@ -33,6 +35,8 @@ module.directive('wordCloud', function () {
 
       if (data) {
         svg
+          .attr('width', getSize()[0])
+          .attr('height', getSize()[1])
           .datum(data)
           .call(layout)
           .selectAll('g.chart')
@@ -45,11 +49,15 @@ module.directive('wordCloud', function () {
     });
 
     scope.$watch('options', function (newVal, oldVal) {
-      render(scope.data, newVal);
+      if (scope.data) {
+        render(scope.data, newVal);
+      }
     });
 
     scope.$watch(onSizeChange, function () {
-      render(scope.data, scope.options);
+      if (scope.data) {
+        render(scope.data, scope.options);
+      }
     }, true);
 
     element.bind('resize', function () {
@@ -66,7 +74,7 @@ module.directive('wordCloud', function () {
       data: '=',
       options: '='
     },
-    template: '<svg class="parent" width="100%" height="100%"></svg>',
+    template: '<svg class="parent"></svg>',
     replace: 'true',
     link: link
   };

@@ -1,9 +1,10 @@
 var d3 = require('d3');
-var d3.layout.cloud = require('d3.layout.cloud');
-var textElement = require('plugins/sp-wordcloud/chart/components/elements/text');
-var valuator = require('plugins/sp-wordcloud/chart/components/utils/valuator');
+var layoutCloud = require('d3-cloud/index');
+var textElement = require('plugins/wordcloud/chart/components/elements/text');
+var valuator = require('plugins/wordcloud/chart/components/utils/valuator');
 
 function wordCloud() {
+  var textScale = d3.scale.linear();
   var accessor = function (d) { return d; };
   var colorScale = d3.scale.category20();
   var fontNormal = d3.functor('normal');
@@ -11,7 +12,7 @@ function wordCloud() {
   var height = 250;
   var rotate = function() { return (~~(Math.random() * 6) - 3) * 30; };
   var font = d3.functor('serif');
-  var fontSize = function (d) { return d.size; };
+  var fontSize = function (d) { return textScale(d.size); };
   var fontStyle = fontNormal;
   var fontWeight = fontNormal;
   var timeInterval = Infinity;
@@ -23,6 +24,10 @@ function wordCloud() {
   var textAnchor = d3.functor('middle');
   var textClass = d3.functor('tag');
 
+  function getSize(d) {
+    return d.size;
+  }
+
   function generator(selection) {
     selection.each(function (data, index) {
       var words = accessor.call(this, data, index);
@@ -31,16 +36,24 @@ function wordCloud() {
         .cssClass(textClass)
         .fill(fill)
         .fillOpacity(fillOpacity)
-        .textAnchor(textAnchor)
+        .textAnchor(textAnchor);
 
-      var g = d3.select(this).append('g')
-        .attr('transform', 'translate(' + (width / 2) + ',' + (height / 2) + ')');
+      var g = d3.select(this).selectAll('g.group')
+        .data([data]);
+
+      g.exit().remove();
+      g.enter().append('g').attr('class', 'group');
+      g.attr('transform', 'translate(' + (width / 2) + ',' + (height / 2) + ')');
+
+      textScale
+        .domain(d3.extent(words, getSize))
+        .range([10, Math.max(width / 5, height / 5)]);
 
       function draw(words) {
         g.datum(words).call(text);
       }
 
-      d3.layout.cloud()
+      layoutCloud()
         .size([width, height])
         .words(words)
         .text(textAccessor)

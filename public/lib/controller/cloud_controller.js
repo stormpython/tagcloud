@@ -1,4 +1,4 @@
-var module = require('ui/modules').get('sp-wordcloud');
+var module = require('ui/modules').get('wordcloud');
 
 module.controller('CloudController', function ($scope) {
   $scope.$watch('esResponse', function (resp) {
@@ -7,12 +7,11 @@ module.controller('CloudController', function ($scope) {
       return;
     }
 
-    debugger;
-    var wordsAggId = $scope.vis.aggs.bySchemaName['metric'][0].id;
+    var wordsAggId = $scope.vis.aggs.bySchemaName['segment'][0].id;
     var buckets = resp.aggregations[wordsAggId].buckets;
-    var metricsAgg = $scope.vis.aggs.bySchemaName['segment'];
+    var metricsAgg = $scope.vis.aggs.bySchemaName['metric'][0];
 
-    $scope.data = buckets.map(function (bucket) {
+    var words = buckets.map(function (bucket) {
       return {
         label: bucket.key,
         text: bucket.key,
@@ -20,6 +19,7 @@ module.controller('CloudController', function ($scope) {
       };
     });
 
-    $scope.options = {};
+    $scope.data = [{ words: words }];
+    $scope.options = {rotate: 0};
   });
 });

@@ -1,6 +1,7 @@
 var d3 = require('d3');
 var _ = require('lodash');
-var wordCloud = require('');
+var builder = require('plugins/wordcloud/chart/components/utils/builder');
+var wordCloud = require('plugins/wordcloud/chart/components/visualization/word_cloud');
 
 function chartGenerator() {
   var opts = {};

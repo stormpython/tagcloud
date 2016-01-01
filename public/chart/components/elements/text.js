@@ -1,5 +1,5 @@
 var d3 = require('d3');
-var valuator = require('plugins/sp-wordcloud/chart/components/utils/valuator');
+var valuator = require('plugins/wordcloud/chart/components/utils/valuator');
 
 function textGenerator() {
   var colorScale = d3.scale.category20();
