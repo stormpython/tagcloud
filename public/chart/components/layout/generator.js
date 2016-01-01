@@ -1,20 +1,22 @@
 var d3 = require('d3');
-var baseLayout = require('plugins/wordcloud/chart/components/layout/layout');
 var attrs = require('plugins/wordcloud/chart/components/utils/attrs');
+var baseLayout = require('plugins/wordcloud/chart/components/layout/layout');
+var gGenerator = require('plugins/wordcloud/chart/components/elements/g');
 
 function layoutGenerator() {
   var layout = baseLayout();
+  var group = gGenerator();
 
   function generator(selection) {
     selection.each(function (data) {
-      var g = d3.select(this).selectAll('g.chart')
-        .data(layout(data));
+      group.cssClass('chart')
+        .transform(function (d) {
+          return 'translate(' + d.dx + ',' + d.dy + ')';
+        });
 
-      g.exit().remove();
-      g.enter().append('g').attr('class', 'chart');
-      g.attr('transform', function (d) {
-        return 'translate(' + d.dx + ',' + d.dy + ')';
-      });
+      d3.select(this)
+        .datum(layout(data))
+        .call(group);
     });
   }
 

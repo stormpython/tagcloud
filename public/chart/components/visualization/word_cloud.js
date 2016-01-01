@@ -1,5 +1,6 @@
 var d3 = require('d3');
 var layoutCloud = require('d3-cloud/index');
+var gGenerator = require('plugins/wordcloud/chart/components/elements/g');
 var textElement = require('plugins/wordcloud/chart/components/elements/text');
 var valuator = require('plugins/wordcloud/chart/components/utils/valuator');
 
@@ -38,19 +39,22 @@ function wordCloud() {
         .fillOpacity(fillOpacity)
         .textAnchor(textAnchor);
 
-      var g = d3.select(this).selectAll('g.group')
-        .data([data]);
+      var group = gGenerator()
+        .cssClass('tags')
+        .transform('translate(' + (width / 2) + ',' + (height / 2) + ')');
 
-      g.exit().remove();
-      g.enter().append('g').attr('class', 'group');
-      g.attr('transform', 'translate(' + (width / 2) + ',' + (height / 2) + ')');
+      var g = d3.select(this)
+        .datum([data])
+        .call(group);
 
       textScale
         .domain(d3.extent(words, getSize))
         .range([10, Math.max(width / 5, height / 5)]);
 
       function draw(words) {
-        g.datum(words).call(text);
+        g.select('g.' + group.cssClass())
+          .datum(words)
+          .call(text);
       }
 
       layoutCloud()
