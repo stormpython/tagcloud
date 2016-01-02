@@ -11,11 +11,13 @@ function wordCloud() {
   var fontNormal = d3.functor('normal');
   var width = 250;
   var height = 250;
-  var rotate = function() { return (~~(Math.random() * 6) - 3) * 30; };
+  var rotate;
   var font = d3.functor('serif');
   var fontSize = function (d) { return textScale(d.size); };
   var fontStyle = fontNormal;
   var fontWeight = fontNormal;
+  var minFontSize = 12;
+  var maxFontSize = 108;
   var timeInterval = Infinity;
   var spiral = 'archimedean';
   var padding = 1;
@@ -49,7 +51,7 @@ function wordCloud() {
 
       textScale
         .domain(d3.extent(words, getSize))
-        .range([10, Math.max(width / 5, height / 5)]);
+        .range([minFontSize, maxFontSize]);
 
       function draw(words) {
         g.select('g.' + group.cssClass())
@@ -61,7 +63,7 @@ function wordCloud() {
         .size([width, height])
         .words(words)
         .text(textAccessor)
-        .rotate(rotate)
+        .rotate(_.isUndefined(rotate) ? function() { return (~~(Math.random() * 6) - 3) * 30; } : rotate)
         .font(font)
         .fontStyle(fontStyle)
         .fontWeight(fontWeight)
@@ -123,6 +125,18 @@ function wordCloud() {
     return generator;
   };
 
+  generator.minFontSize = function (v) {
+    if (!arguments.length) { return minFontSize; }
+    minFontSize = v;
+    return generator;
+  };
+
+  generator.maxFontSize = function (v) {
+    if (!arguments.length) { return maxFontSize; }
+    maxFontSize = v;
+    return generator;
+  };
+
   generator.timeInterval = function (v) {
     if (!arguments.length) { return timeInterval; }
     timeInterval = v;
@@ -144,6 +158,12 @@ function wordCloud() {
   generator.text = function (v) {
     if (!arguments.length) { return textAccessor; }
     textAccessor = v;
+    return generator;
+  };
+
+  generator.textScale = function (v) {
+    if (!arguments.length) { return textScale; }
+    textScale = v;
     return generator;
   };
 

@@ -19,7 +19,7 @@ module.controller('CloudController', function ($scope) {
       };
     });
 
+    $scope.eventListeners = {};
     $scope.data = [{ words: words }];
-    $scope.options = {rotate: 0};
   });
 });

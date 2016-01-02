@@ -7,7 +7,7 @@ function textGenerator() {
   var transform = function (d) {
     return 'translate(' + [d.x, d.y] + ')rotate(' + d.rotate + ')';
   };
-  var fontSize = function (d) { return d.size + 'px'; };
+  var fontSize = function (d) { return d.size + 'pt'; };
   var fontFamily = function (d) { return d.font; };
   var fontWeight = function (d) { return d.weight; };
   var fontStyle = function (d) { return d.style; };

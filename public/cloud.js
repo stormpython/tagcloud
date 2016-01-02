@@ -13,6 +13,19 @@ function WordCloudProvider(Private) {
      'and the importance of each tag is shown with font size or color.',
     icon: 'fa-cloud',
     template: require('plugins/wordcloud/cloud.html'),
+    params: {
+      defaults: {
+        rotate: 0,
+        font: 'serif',
+        fontStyle: 'normal',
+        fontWeight: 'normal',
+        timeInterval: 1000,
+        spiral: 'archimedean',
+        minFontSize: 18,
+        maxFontSize: 108
+      },
+      editor: require('plugins/wordcloud/cloud_vis_params.html')
+    },
     schemas: new Schemas([
       {
         group: 'metrics',
@@ -31,8 +44,8 @@ function WordCloudProvider(Private) {
         icon: 'fa fa-cloud',
         title: 'Tags',
         min: 1,
-        // max: 1,
-        aggFilter: ['terms', 'filters', 'significant_terms']
+        max: 1,
+        aggFilter: ['terms', 'significant_terms']
       },
       {
         group: 'buckets',
