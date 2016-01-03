@@ -81,7 +81,7 @@ module.directive('tagCloud', function () {
     scope: {
       data: '=',
       options: '=',
-      events: '='
+      eventListeners: '='
     },
     template: '<svg class="parent"></svg>',
     replace: 'true',
