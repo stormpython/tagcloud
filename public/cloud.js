@@ -19,10 +19,10 @@ function TagCloudProvider(Private) {
         font: 'serif',
         fontStyle: 'normal',
         fontWeight: 'normal',
-        timeInterval: 1000,
+        timeInterval: 500,
         spiral: 'archimedean',
         minFontSize: 18,
-        maxFontSize: 108
+        maxFontSize: 90
       },
       editor: require('plugins/tagcloud/cloud_vis_params.html')
     },
@@ -46,15 +46,6 @@ function TagCloudProvider(Private) {
         min: 1,
         max: 1,
         aggFilter: ['terms', 'significant_terms']
-      },
-      {
-        group: 'buckets',
-        name: 'split',
-        icon: 'fa fa-th',
-        title: 'Split Chart',
-        min: 0,
-        max: 1,
-        aggFilter: '!geohash_grid'
       }
     ])
   });

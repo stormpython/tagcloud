@@ -10,11 +10,9 @@ module.controller('CloudController', function ($scope) {
     }
 
     var tagsAggId = _.first(_.pluck($scope.vis.aggs.bySchemaName['segment'], 'id'));
-    var splitAggId = _.first(_.pluck($scope.vis.aggs.bySchemaName['split'], 'id'));
     var metricsAgg = _.first($scope.vis.aggs.bySchemaName['metric']);
 
     var buckets = resp.aggregations[tagsAggId].buckets;
-    // var splits = groups[splitAggId];
 
     var tags = buckets.map(function (bucket) {
       return {
