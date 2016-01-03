@@ -1,8 +1,8 @@
 var d3 = require('d3');
 var layoutCloud = require('d3-cloud/index');
-var gGenerator = require('plugins/tagcloud/chart/components/elements/g');
-var textElement = require('plugins/tagcloud/chart/components/elements/text');
-var valuator = require('plugins/tagcloud/chart/components/utils/valuator');
+var gGenerator = require('plugins/tagcloud/vis/components/elements/g');
+var textElement = require('plugins/tagcloud/vis/components/elements/text');
+var valuator = require('plugins/tagcloud/vis/components/utils/valuator');
 
 function tagCloud() {
   var textScale = d3.scale.linear();
