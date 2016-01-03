@@ -18,7 +18,6 @@ module.controller('CloudController', function ($scope) {
 
     var tags = buckets.map(function (bucket) {
       return {
-        group: bucket.key,
         text: bucket.key,
         size: metricsAgg.getValue(bucket)
       };
