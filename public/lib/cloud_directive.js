@@ -25,7 +25,7 @@ module.directive('tagCloud', function () {
       eventListeners = eventListeners || {};
 
       chart
-        .options(opts);
+        .options(opts)
         .listeners(eventListeners);
 
       if (data) {
