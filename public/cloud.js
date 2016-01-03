@@ -22,7 +22,7 @@ function TagCloudProvider(Private) {
         timeInterval: 500,
         spiral: 'archimedean',
         minFontSize: 18,
-        maxFontSize: 90
+        maxFontSize: 72
       },
       editor: require('plugins/tagcloud/cloud_vis_params.html')
     },
