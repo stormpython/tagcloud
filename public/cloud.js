@@ -1,5 +1,5 @@
-require('plugins/tagcloud/lib/controller/cloud_controller.js');
-require('plugins/tagcloud/lib/directive/cloud_directive.js');
+require('plugins/tagcloud/lib/cloud_controller.js');
+require('plugins/tagcloud/lib/cloud_directive.js');
 
 function TagCloudProvider(Private) {
   var TemplateVisType = Private(require('ui/template_vis_type/TemplateVisType'));
