@@ -1,7 +1,7 @@
 var d3 = require('d3');
 var _ = require('lodash');
-var builder = require('plugins/wordcloud/chart/components/utils/builder');
-var wordCloud = require('plugins/wordcloud/chart/components/visualization/word_cloud');
+var builder = require('plugins/tagcloud/chart/components/utils/builder');
+var tagCloud = require('plugins/tagcloud/chart/components/visualization/tag_cloud');
 
 function chartGenerator() {
   var opts = {};
@@ -9,8 +9,8 @@ function chartGenerator() {
   function generator(selection) {
     selection.each(function (data) {
       var dataOpts = (data && data.options) || {};
-      var accessor = opts.accessor || dataOpts.accessor || 'words';
-      var chart = wordCloud()
+      var accessor = opts.accessor || dataOpts.accessor || 'tags';
+      var chart = tagCloud()
         .width(data.width)
         .height(data.height)
         .accessor(accessor);

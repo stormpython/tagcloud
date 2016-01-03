@@ -1,25 +1,29 @@
-var module = require('ui/modules').get('wordcloud');
+var _ = require('lodash');
+
+var module = require('ui/modules').get('tagcloud');
 
 module.controller('CloudController', function ($scope) {
   $scope.$watch('esResponse', function (resp) {
     if (!resp) {
-      $scope.words = null;
+      $scope.data = null;
       return;
     }
 
-    var wordsAggId = $scope.vis.aggs.bySchemaName['segment'][0].id;
-    var buckets = resp.aggregations[wordsAggId].buckets;
-    var metricsAgg = $scope.vis.aggs.bySchemaName['metric'][0];
+    var tagsAggId = _.first(_.pluck($scope.vis.aggs.bySchemaName['segment'], 'id'));
+    var splitAggId = _.first(_.pluck($scope.vis.aggs.bySchemaName['split'], 'id'));
+    var metricsAgg = _.first($scope.vis.aggs.bySchemaName['metric']);
 
-    var words = buckets.map(function (bucket) {
+    var buckets = resp.aggregations[tagsAggId].buckets;
+    // var splits = groups[splitAggId];
+
+    var tags = buckets.map(function (bucket) {
       return {
-        label: bucket.key,
+        group: bucket.key,
         text: bucket.key,
         size: metricsAgg.getValue(bucket)
       };
     });
 
-    $scope.eventListeners = {};
-    $scope.data = [{ words: words }];
+    $scope.data = [{ tags: tags}];
   });
 });

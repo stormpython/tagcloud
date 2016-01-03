@@ -1,7 +1,7 @@
 module.exports = function (kibana) {
   return new kibana.Plugin({
     uiExports: {
-      visTypes: ['plugins/wordcloud/cloud']
+      visTypes: ['plugins/tagcloud/cloud']
     }
   });
 };

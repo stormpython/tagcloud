@@ -1,10 +1,10 @@
 var d3 = require('d3');
 var layoutCloud = require('d3-cloud/index');
-var gGenerator = require('plugins/wordcloud/chart/components/elements/g');
-var textElement = require('plugins/wordcloud/chart/components/elements/text');
-var valuator = require('plugins/wordcloud/chart/components/utils/valuator');
+var gGenerator = require('plugins/tagcloud/chart/components/elements/g');
+var textElement = require('plugins/tagcloud/chart/components/elements/text');
+var valuator = require('plugins/tagcloud/chart/components/utils/valuator');
 
-function wordCloud() {
+function tagCloud() {
   var textScale = d3.scale.linear();
   var accessor = function (d) { return d; };
   var colorScale = d3.scale.category20();
@@ -17,12 +17,12 @@ function wordCloud() {
   var fontStyle = fontNormal;
   var fontWeight = fontNormal;
   var minFontSize = 12;
-  var maxFontSize = 108;
+  var maxFontSize = 60;
   var timeInterval = Infinity;
   var spiral = 'archimedean';
   var padding = 1;
   var textAccessor = function (d) { return d.text; };
-  var fill = function (d, i) { return colorScale(i); };
+  var fill = function (d, i) { return colorScale(d.text); };
   var fillOpacity = d3.functor(1);
   var textAnchor = d3.functor('middle');
   var textClass = d3.functor('tag');
@@ -37,6 +37,7 @@ function wordCloud() {
 
       var text = textElement()
         .cssClass(textClass)
+        .fontSize(function (d) { return d.size + 'px'; })
         .fill(fill)
         .fillOpacity(fillOpacity)
         .textAnchor(textAnchor);
@@ -194,4 +195,4 @@ function wordCloud() {
   return generator;
 }
 
-module.exports = wordCloud;
+module.exports = tagCloud;

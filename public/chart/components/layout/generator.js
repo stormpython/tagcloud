@@ -1,7 +1,7 @@
 var d3 = require('d3');
-var attrs = require('plugins/wordcloud/chart/components/utils/attrs');
-var baseLayout = require('plugins/wordcloud/chart/components/layout/layout');
-var gGenerator = require('plugins/wordcloud/chart/components/elements/g');
+var attrs = require('plugins/tagcloud/chart/components/utils/attrs');
+var baseLayout = require('plugins/tagcloud/chart/components/layout/layout');
+var gGenerator = require('plugins/tagcloud/chart/components/elements/g');
 
 function layoutGenerator() {
   var layout = baseLayout();

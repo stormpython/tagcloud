@@ -1,18 +1,18 @@
-require('plugins/wordcloud/lib/controller/cloud_controller.js');
-require('plugins/wordcloud/lib/directive/cloud_directive.js');
+require('plugins/tagcloud/lib/controller/cloud_controller.js');
+require('plugins/tagcloud/lib/directive/cloud_directive.js');
 
-function WordCloudProvider(Private) {
+function TagCloudProvider(Private) {
   var TemplateVisType = Private(require('ui/template_vis_type/TemplateVisType'));
   var Schemas = Private(require('ui/Vis/Schemas'));
 
   return new TemplateVisType({
-    name: 'wordcloud',
-    title: 'Word cloud',
-    description: 'A word (tag) cloud visualization is a visual representation of text data, ' +
+    name: 'tagcloud',
+    title: 'Tag cloud',
+    description: 'A tag cloud visualization is a visual representation of text data, ' +
      'typically used to visualize free form text. Tags are usually single words, ' +
      'and the importance of each tag is shown with font size or color.',
     icon: 'fa-cloud',
-    template: require('plugins/wordcloud/cloud.html'),
+    template: require('plugins/tagcloud/cloud.html'),
     params: {
       defaults: {
         rotate: 0,
@@ -24,7 +24,7 @@ function WordCloudProvider(Private) {
         minFontSize: 18,
         maxFontSize: 108
       },
-      editor: require('plugins/wordcloud/cloud_vis_params.html')
+      editor: require('plugins/tagcloud/cloud_vis_params.html')
     },
     schemas: new Schemas([
       {
@@ -60,4 +60,4 @@ function WordCloudProvider(Private) {
   });
 }
 
-require('ui/registry/vis_types').register(WordCloudProvider);
+require('ui/registry/vis_types').register(TagCloudProvider);

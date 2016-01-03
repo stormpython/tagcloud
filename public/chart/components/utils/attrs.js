@@ -1,5 +1,5 @@
 var _ = require('lodash');
-var builder = require('plugins/wordcloud/chart/components/utils/builder');
+var builder = require('plugins/tagcloud/chart/components/utils/builder');
 
 function attrs(generator) {
   return function () {

@@ -1,10 +1,11 @@
 var d3 = require('d3');
-var baseLayout = require('plugins/wordcloud/chart/components/layout/generator');
-var control = require('plugins/wordcloud/chart/components/control/events');
-var chartGenerator = require('plugins/wordcloud/chart/index');
-var module = require('ui/modules').get('wordcloud');
+var _ = require('lodash');
+var baseLayout = require('plugins/tagcloud/chart/components/layout/generator');
+var control = require('plugins/tagcloud/chart/components/control/events');
+var chartGenerator = require('plugins/tagcloud/chart/index');
+var module = require('ui/modules').get('tagcloud');
 
-module.directive('wordCloud', function () {
+module.directive('tagCloud', function () {
   function link (scope, element, attrs) {
     var layout = baseLayout();
     var chart = chartGenerator();
@@ -64,18 +65,15 @@ module.directive('wordCloud', function () {
       }
     });
 
-    scope.$watch(onSizeChange, function () {
+    scope.$watch(onSizeChange, _.debounce(function () {
       if (scope.data) {
-        render(scope.data, scope.options);
+        render(scope.data, scope.options, scope.eventListeners);
       }
-    }, true);
+    }, 250), true);
 
     element.bind('resize', function () {
       scope.$apply();
     });
-
-    // Initial render call
-    render();
   }
 
   return {
