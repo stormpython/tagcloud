@@ -1,11 +1,15 @@
 var d3 = require('d3');
 var _ = require('lodash');
+var baseLayout = require('plugins/tagcloud/chart/components/layout/generator');
+var control = require('plugins/tagcloud/chart/components/control/events');
 var chartGenerator = require('plugins/tagcloud/chart/index');
 var module = require('ui/modules').get('tagcloud');
 
 module.directive('tagCloud', function () {
   function link (scope, element, attrs) {
+    var layout = baseLayout();
     var chart = chartGenerator();
+    var events = control();
     var svg = d3.select(element[0]);
 
     function onSizeChange() {
@@ -22,17 +26,25 @@ module.directive('tagCloud', function () {
 
     function render(data, opts, eventListeners) {
       opts = opts || {};
-      eventListeners = eventListeners || {};
 
-      chart
-        .options(opts)
-        .listeners(eventListeners);
+      events.listeners(eventListeners);
+
+      layout.attr({
+        type: opts.layout || 'grid',
+        columns: opts.numOfColumns || 0,
+        size: getSize()
+      });
+
+      chart.options(opts);
 
       if (data) {
         svg
           .attr('width', getSize()[0])
           .attr('height', getSize()[1])
           .datum(data)
+          .call(events)
+          .call(layout)
+          .selectAll('g.chart')
           .call(chart);
       }
     };
