@@ -33,7 +33,7 @@ function tagCloud() {
 
   function generator(selection) {
     selection.each(function (data, index) {
-      var words = accessor.call(this, data, index);
+      var tags = accessor.call(this, data, index);
 
       var text = textElement()
         .cssClass(textClass)
@@ -51,18 +51,18 @@ function tagCloud() {
         .call(group);
 
       textScale
-        .domain(d3.extent(words, getSize))
+        .domain(d3.extent(tags, getSize))
         .range([minFontSize, maxFontSize]);
 
-      function draw(words) {
+      function draw(tags) {
         g.select('g.' + group.cssClass())
-          .datum(words)
+          .datum(tags)
           .call(text);
       }
 
       layoutCloud()
         .size([width, height])
-        .words(words)
+        .words(tags)
         .text(textAccessor)
         .rotate(_.isUndefined(rotate) ? function() { return (~~(Math.random() * 6) - 3) * 30; } : rotate)
         .font(font)
