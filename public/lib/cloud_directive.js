@@ -11,8 +11,8 @@ module.directive('tagCloud', function () {
 
     function onSizeChange() {
       return {
-        width: element.parent().parent().width(),
-        height: element.parent().parent().height()
+        width: element.parent().width(),
+        height: element.parent().height()
       };
     }
 

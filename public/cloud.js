@@ -1,3 +1,4 @@
+require('plugins/tagcloud/cloud.less');
 require('plugins/tagcloud/lib/cloud_controller.js');
 require('plugins/tagcloud/lib/cloud_directive.js');
 
