@@ -166,7 +166,7 @@ function tagCloud() {
   generator.textScale = function (v) {
     var scales = ['linear', 'log', 'sqrt'];
     if (!arguments.length) { return textScale; }
-    textScale = _.includes(scales, v) ? d3.scale[v]() : v;
+    textScale = _.includes(scales, v) ? d3.scale[v]() : textScale;
     return generator;
   };
 
