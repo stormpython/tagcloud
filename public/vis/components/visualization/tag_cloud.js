@@ -1,4 +1,5 @@
 var d3 = require('d3');
+var _ = require('lodash');
 var layoutCloud = require('d3-cloud/index');
 var gGenerator = require('plugins/tagcloud/vis/components/elements/g');
 var textElement = require('plugins/tagcloud/vis/components/elements/text');
@@ -163,8 +164,9 @@ function tagCloud() {
   };
 
   generator.textScale = function (v) {
+    var scales = ['linear', 'log', 'sqrt'];
     if (!arguments.length) { return textScale; }
-    textScale = v;
+    textScale = _.includes(scales, v) ? d3.scale[v]() : v;
     return generator;
   };
 

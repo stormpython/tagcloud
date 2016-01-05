@@ -1,9 +1,18 @@
 <div class="form-group">
   <div class="form-group">
     <label>Layout algorithm</label>
-    <select ng-model="vis.params.spiral"> class="form-control">
+    <select ng-model="vis.params.spiral" class="form-control">
       <option value="archimedean" selected="selected">archimedean</option>
       <option value="rectangular">rectangular</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label>Text Scale</label>
+    <select ng-model="vis.params.textScale" class="form-control">
+      <option value="linear" selected="selected">linear</option>
+      <option value="log">log</option>
+      <option value="sqrt">square root</option>
     </select>
   </div>
 
@@ -33,7 +42,7 @@
   <input type="range" ng-model="vis.params.maxFontSize" class="form-control" min="12" max="120">
 
   <label>Rotate - {{ vis.params.rotate}} degrees</label>
-  <input type="range" ng-model="vis.params.rotate" class="form-control" min="0" max="360">
+  <input type="range" ng-model="vis.params.rotate" class="form-control" min="-90" max="90">
 
   <label>Time Interval - {{ vis.params.timeInterval }}ms</label>
   <input type="range" ng-model="vis.params.timeInterval" class="form-control" min="100" max="2000">

@@ -16,6 +16,7 @@ function TagCloudProvider(Private) {
     template: require('plugins/tagcloud/cloud.html'),
     params: {
       defaults: {
+        textScale: 'linear',
         rotate: 0,
         font: 'serif',
         fontStyle: 'normal',
