@@ -14,3 +14,11 @@ Kibana 4.3+
 2. Use the following command to install the plugin:
 
   ```bin/kibana plugin --install stormpython/kibana-tag-cloud-plugin```
+
+### Disclosure
+This repo is in its early stages. The plugin as it stands is incomplete. And there is an outstanding [bug](https://github.com/stormpython/kibana-tag-cloud-plugin/issues/1) that needs to be fixed. In addition, please note d3-cloud's warning regarding how word clouds are rendered.
+
+>Note: if a word cannot be placed in any of the positions attempted along the spiral, it is not included in the final word layout. This may be addressed in a future release.
+
+### Issues
+Please file issues [here](https://github.com/stormpython/kibana-tag-cloud-plugin/issues).
