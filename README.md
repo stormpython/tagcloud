@@ -8,6 +8,12 @@ This visualization was inspired by [Tim Roe's](https://www.timroes.de/) blog [po
 ### Requirements
 Kibana 4.3+
 
+### Installation steps
+1. Download [Kibana](https://www.elastic.co/downloads/kibana).
+2. Install plugin with this command:
+
+```bin/kibana plugin -i tagcloud -u https://github.com/stormpython/tagcloud/archive/master.zip```
+
 ### Disclosure
 This repo is in its early stages. The plugin as it stands is incomplete. And there is an outstanding [bug](https://github.com/stormpython/kibana-tag-cloud-plugin/issues/1) that needs to be fixed. In addition, please note d3-cloud's warning regarding how word clouds are rendered.
 
