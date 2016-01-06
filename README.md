@@ -1,4 +1,4 @@
-# kibana-tag-cloud-plugin
+# Kibana Tag Cloud Plugin
 A Tag Cloud Plugin for Kibana 4
 
 ![Kibana Tag Cloud](tagcloud.png)
