@@ -1,6 +1,6 @@
 var d3 = require('d3');
 var _ = require('lodash');
-var layoutCloud = require('d3-cloud/index');
+var layoutCloud = require('d3.layout.cloud/index');
 var gGenerator = require('plugins/tagcloud/vis/components/elements/g');
 var textElement = require('plugins/tagcloud/vis/components/elements/text');
 var valuator = require('plugins/tagcloud/vis/components/utils/valuator');
