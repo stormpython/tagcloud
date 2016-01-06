@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "dependencies": {
     "d3": "3.5.12",
-    "d3-cloud": "1.2.1",
+    "d3.layout.cloud": "1.2.0",
     "lodash": "3.10.1"
   },
   "devDependencies": {
