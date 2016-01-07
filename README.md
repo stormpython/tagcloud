@@ -10,9 +10,13 @@ Kibana 4.3+
 
 ### Installation steps
 1. Download [Kibana](https://www.elastic.co/downloads/kibana).
-2. Install plugin with this command:
+2. Install plugin with one of the following commands:
 
-```bin/kibana plugin -i tagcloud -u https://github.com/stormpython/tagcloud/archive/master.zip```
+```$ bin/kibana plugin --install stormpython/tagcloud```
+
+**Alternative**
+
+```$ bin/kibana plugin -i tagcloud -u https://github.com/stormpython/tagcloud/archive/master.zip```
 
 ### Disclosure
 This repo is in its early stages. The plugin as it stands is incomplete. And there is an outstanding [bug](https://github.com/stormpython/kibana-tag-cloud-plugin/issues/1) that needs to be fixed. In addition, please note d3-cloud's warning regarding how word clouds are rendered.
