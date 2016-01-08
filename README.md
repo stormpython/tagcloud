@@ -9,8 +9,8 @@ This visualization was inspired by [Tim Roe's](https://www.timroes.de/) blog [po
 Kibana 4.3+
 
 ### Installation steps
-1. Download [Kibana](https://www.elastic.co/downloads/kibana).
-2. Install plugin with one of the following commands:
+1. Download and unpack [Kibana](https://www.elastic.co/downloads/kibana).
+2. From the Kibana root directory, install plugin with one of the following commands:
 
 ```$ bin/kibana plugin --install stormpython/tagcloud```
 
@@ -19,7 +19,7 @@ Kibana 4.3+
 ```$ bin/kibana plugin -i tagcloud -u https://github.com/stormpython/tagcloud/archive/master.zip```
 
 ### Disclosure
-This repo is in its early stages. The plugin as it stands is incomplete. And there is an outstanding [bug](https://github.com/stormpython/kibana-tag-cloud-plugin/issues/1) that needs to be fixed. In addition, please note d3-cloud's warning regarding how word clouds are rendered.
+This repo is in its early stages. There is an outstanding [bug](https://github.com/stormpython/kibana-tag-cloud-plugin/issues/1) that needs to be fixed. In addition, please note d3-cloud's warning regarding how word clouds are rendered.
 
 >Note: if a word cannot be placed in any of the positions attempted along the spiral, it is not included in the final word layout. This may be addressed in a future release.
 
