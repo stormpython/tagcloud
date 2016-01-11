@@ -12,7 +12,10 @@ function tagCloud() {
   var fontNormal = d3.functor('normal');
   var width = 250;
   var height = 250;
-  var rotate;
+  var rotationScale = d3.scale.linear();
+  var orientations = 1;
+  var fromDegree = 0;
+  var toDegree = 0;
   var font = d3.functor('serif');
   var fontSize = function (d) { return textScale(d.size); };
   var fontStyle = fontNormal;
@@ -51,6 +54,12 @@ function tagCloud() {
         .datum([data])
         .call(group);
 
+      var numOfOrientations = orientations - 1;
+
+      rotationScale
+        .domain([0, numOfOrientations])
+        .range([fromDegree, toDegree]);
+
       textScale
         .domain(d3.extent(tags, getSize))
         .range([minFontSize, maxFontSize]);
@@ -65,7 +74,9 @@ function tagCloud() {
         .size([width, height])
         .words(tags)
         .text(textAccessor)
-        .rotate(_.isUndefined(rotate) ? function() { return (~~(Math.random() * 6) - 3) * 30; } : rotate)
+        .rotate(function() {
+          return rotationScale(~~(Math.random() * numOfOrientations));
+        })
         .font(font)
         .fontStyle(fontStyle)
         .fontWeight(fontWeight)
@@ -97,9 +108,21 @@ function tagCloud() {
     return generator;
   };
 
-  generator.rotate = function (v) {
-    if (!arguments.length) { return rotate; }
-    rotate = v;
+  generator.orientations = function (v) {
+    if (!arguments.length) { return orientations; }
+    orientations = v;
+    return generator;
+  };
+
+  generator.fromDegree = function (v) {
+    if (!arguments.length) { return fromDegree; }
+    fromDegree = v;
+    return generator;
+  };
+
+  generator.toDegree = function (v) {
+    if (!arguments.length) { return toDegree; }
+    toDegree = v;
     return generator;
   };
 
