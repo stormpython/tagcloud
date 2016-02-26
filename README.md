@@ -10,11 +10,7 @@ Kibana 4.3+
 
 ### Installation steps
 1. Download and unpack [Kibana](https://www.elastic.co/downloads/kibana).
-2. From the Kibana root directory, install plugin with one of the following commands:
-
-```$ bin/kibana plugin --install stormpython/tagcloud```
-
-**Alternative**
+2. From the Kibana root directory, install the plugin with the following command:
 
 ```$ bin/kibana plugin -i tagcloud -u https://github.com/stormpython/tagcloud/archive/master.zip```
 
