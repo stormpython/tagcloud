@@ -25,7 +25,7 @@ function vis() {
       chart.options(opts);
 
       d3.select(this)
-        .attr('width', size[0])
+        .attr('width', '100%')
         .attr('height', size[1])
         .call(events)
         .call(layout)
